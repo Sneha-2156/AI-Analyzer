@@ -1,0 +1,6 @@
+CS101 Syllabus (Topics)
+1. Algorithms & Complexity — Big-O, sorting, searching, graph algorithms (BFS/DFS, shortest paths).
+2. Data Structures — arrays, trees, heaps, hash tables.
+3. Databases — relational model, normalization (1NF–3NF), transactions and ACID.
+4. Networking — transport layer, TCP vs UDP, reliability and congestion basics.
+5. Probability & Queuing — Poisson processes, basic queuing intuition for systems.

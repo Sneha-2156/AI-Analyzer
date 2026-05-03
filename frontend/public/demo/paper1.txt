@@ -1,0 +1,7 @@
+Computer Science — Final Examination 2022
+
+1. Define Big-O notation and give an example of O(n log n). (5 marks)
+2. Explain the difference between TCP and UDP with two practical use cases. (8 marks)
+3. Derive the time complexity of merge sort using a recurrence relation. (10 marks)
+4. What is normalization in databases? Describe 3NF with an example. (7 marks)
+5. Calculate the shortest path using Dijkstra's algorithm for the graph: A-B(1), B-C(2), A-C(4). (10 marks)

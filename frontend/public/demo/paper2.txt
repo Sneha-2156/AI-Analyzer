@@ -1,0 +1,7 @@
+Computer Science — Final Examination 2023
+
+1. Compare BFS and DFS for graph traversal; state when each is preferable. (6 marks)
+2. Prove by induction that the sum of the first n integers is n(n+1)/2. (8 marks)
+3. Describe ACID properties in transactions and why they matter. (8 marks)
+4. Implement pseudocode for binary search on a sorted array and state its complexity. (6 marks)
+5. A server handles 1000 req/s with Poisson arrivals; explain how queuing theory informs capacity planning. (12 marks)
