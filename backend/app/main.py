@@ -1,7 +1,11 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import FastAPI, File, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.schemas.models import AnalyzeRequest, AnalyzeResponse, ExtractResponse, PlanRequest, PlanResponse
 from app.services.aggregation import build_topic_stats
@@ -9,6 +13,7 @@ from app.services.ai_service import classify_questions, extract_questions, gener
 from app.services.extraction import extract_from_upload
 
 app = FastAPI(title="AI Past Paper Analyzer", version="0.1.0")
+FRONTEND_OUT_DIR = Path(__file__).resolve().parents[2] / "frontend" / "out"
 
 app.add_middleware(
     CORSMiddleware,
@@ -51,3 +56,16 @@ def plan(body: PlanRequest):
     ai = generate_plan_ai(body.topics, body.days)
     merged = merge_plan(ai, rules)
     return PlanResponse(plan=merged)
+
+
+if FRONTEND_OUT_DIR.exists():
+    app.mount("/", StaticFiles(directory=FRONTEND_OUT_DIR, html=True), name="frontend")
+else:
+    @app.get("/")
+    def frontend_not_built():
+        return JSONResponse(
+            status_code=503,
+            content={
+                "detail": "Frontend build not found. Run `npm run build` in `frontend/` first.",
+            },
+        )

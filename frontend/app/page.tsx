@@ -71,8 +71,7 @@ export default function UploadPage() {
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Upload & analyze</h1>
         <p className="mt-1 text-slate-600">
-          Upload a PDF or text past paper, paste your syllabus, then run analysis. Demo loads two sample papers as plain
-          text (no OCR).
+          Upload a PDF or TXT past paper, paste your syllabus, and click Analyze.
         </p>
       </div>
 

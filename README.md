@@ -72,7 +72,7 @@ Optional model override:
 $env:OPENAI_MODEL="gpt-4o-mini"
 ```
 
-Start the backend:
+Start the backend only (API mode):
 
 ```bash
 uvicorn app.main:app --reload
@@ -80,7 +80,38 @@ uvicorn app.main:app --reload
 
 The API will run on `http://127.0.0.1:8000`.
 
-## Frontend setup
+## Single-command full-stack start (recommended)
+
+This project supports a single Python command that:
+
+1. Builds the Next.js frontend as static assets
+2. Starts FastAPI
+3. Serves both API + frontend from the same backend server
+
+From repo root:
+
+```bash
+python backend/start_fullstack.py
+```
+
+From `backend/`:
+
+```bash
+python start_fullstack.py
+```
+
+Then open:
+
+- App: `http://127.0.0.1:8000/`
+- API health: `http://127.0.0.1:8000/health`
+
+Notes:
+
+- `npm` must be available because the command runs `npm run build` in `frontend/`.
+- To skip rebuilding the frontend on each start, set `SKIP_FRONTEND_BUILD=1` after at least one successful build.
+- Optional runtime flags: `HOST`, `PORT`, `RELOAD=1`.
+
+## Frontend setup (development)
 
 ```bash
 cd frontend
@@ -93,7 +124,7 @@ Optional frontend API override:
 $env:NEXT_PUBLIC_API_URL="http://127.0.0.1:8000"
 ```
 
-Start the frontend:
+Start the frontend dev server:
 
 ```bash
 npm run dev
@@ -130,7 +161,8 @@ pytest
 - The dashboard stores the last analysis in browser `sessionStorage`, so results are session-based rather than persisted server-side.
 - If no `OPENAI_API_KEY` is set or model output fails validation, the backend falls back to simpler rule-based behavior where possible.
 - Topic classification quality depends heavily on the pasted syllabus and the clarity of the extracted paper text.
-- CORS is currently configured for local frontend development on port `3000`.
+- CORS is configured for local frontend development on port `3000`.
+- Single-command mode is production-style static serving, not hot-reload frontend development.
 
 ## Sample use case
 
